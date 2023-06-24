@@ -1,4 +1,6 @@
-UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=0 WHERE OnlyCapturableWhenNearDeathKneeling is NULL;
+-- UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=0 WHERE OnlyCapturableWhenNearDeathKneeling is NULL;
+
+
 INSERT OR IGNORE INTO CreatureDefinition (CreatureID, ByProduct) SELECT EnemyID AS CreatureID, Drop1 AS ByProduct FROM EnemyDefinition;
 
 INSERT OR IGNORE INTO CreatureDefinition (CreatureID) SELECT RegistryID AS CreatureID FROM Registry WHERE SubtypeID='DarkWizardCharacter' OR SubtypeID='DarkWizardCharacter' OR SubtypeID='DarkWizardDeath' OR SubtypeID='DarkWizardDeprecated' OR SubtypeID='DarkWizardExtortionist' OR SubtypeID='DarkWizardPoacher' OR SubtypeID='DarkWizardWolf' OR SubtypeID='T3DarkWizard' OR SubtypeID='T4DarkWizard' OR SubtypeID='Wolf' OR SubtypeID='Troll' OR SubtypeID='Inferius' OR SubtypeID='InferiusDeprecated' OR SubtypeID='Dugbog' OR SubtypeID='Dragon' OR SubtypeID='PygmyDragonCharacter' OR SubtypeID='GoblinDeprecated' OR SubtypeID='Mannequin' OR SubtypeID='NamedEnemy' OR SubtypeID='SpiderAcromantula' OR SubtypeID='SpiderDeprecated' OR SubtypeID='SpiderVenomous' OR SubtypeID='SpiderWoodlouse' OR SubtypeID='TombProtector' OR SubtypeID='TombProtectorMinion' OR SubtypeID='TrainingDummy' OR SubtypeID='TrollDeprecated' OR SubtypeID='SpiderVenomous' OR SubtypeID='SpiderVenomous' OR SubtypeID='SpiderVenomous';
@@ -20,7 +22,21 @@ UPDATE CreatureDefinition SET MaxShutdownDistance = 7500.0 WHERE MaxShutdownDist
 UPDATE CreatureDefinition SET RenderShutdownDistance = 12500.0 WHERE RenderShutdownDistance IS NULL;
 UPDATE CreatureDefinition SET PreferredToy = 'TwigBallToy' WHERE PreferredToy IS NULL;
 
-UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=1 WHERE OnlyCapturableWhenNearDeathKneeling is NULL;
-UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=NULL WHERE OnlyCapturableWhenNearDeathKneeling=0;
+
+
+INSERT OR IGNORE INTO CreatureAttributeFacts (CreatureID, CreatureAttributes) VALUES ('Bladetooth','CreatureAttribute_Flying'),('Dragon1','CreatureAttribute_Flying'),('Dragon2','CreatureAttribute_Flying'),('Dragon3','CreatureAttribute_Flying'),('Dragon4','CreatureAttribute_Flying'),('Dragon_GreenWelsh','CreatureAttribute_Flying'),('Dragon_HebrideanBlack','CreatureAttribute_Flying'),('Dragon_HungarianHorntail','CreatureAttribute_Flying'),('Dragon_Tortured','CreatureAttribute_Flying'),('RanrakDragon','CreatureAttribute_Flying'),('Bladetooth','CreatureAttribute_Aggressive'),('Dragon1','CreatureAttribute_Aggressive'),('Dragon2','CreatureAttribute_Aggressive'),('Dragon3','CreatureAttribute_Aggressive'),('Dragon4','CreatureAttribute_Aggressive'),('Dragon_GreenWelsh','CreatureAttribute_Aggressive'),('Dragon_HebrideanBlack','CreatureAttribute_Aggressive'),('Dragon_HungarianHorntail','CreatureAttribute_Aggressive'),('Dragon_Tortured','CreatureAttribute_Aggressive'),('RanrakDragon','CreatureAttribute_Aggressive'),('Bladetooth','CreatureAttribute_LargeBeasts'),('Dragon1','CreatureAttribute_LargeBeasts'),('Dragon2','CreatureAttribute_LargeBeasts'),('Dragon3','CreatureAttribute_LargeBeasts'),('Dragon4','CreatureAttribute_LargeBeasts'),('Dragon_GreenWelsh','CreatureAttribute_LargeBeasts'),('Dragon_HebrideanBlack','CreatureAttribute_LargeBeasts'),('Dragon_HungarianHorntail','CreatureAttribute_LargeBeasts'),('Dragon_Tortured','CreatureAttribute_LargeBeasts'),('RanrakDragon','CreatureAttribute_LargeBeasts');
+INSERT OR IGNORE INTO Registry (RegistryID, SubtypeID) VALUES ('BladetoothMount','UsableNonInventory'),('Dragon1Mount','UsableNonInventory'),('Dragon2Mount','UsableNonInventory'),('Dragon3Mount','UsableNonInventory'),('Dragon4Mount','UsableNonInventory'),('Dragon_GreenWelshMount','UsableNonInventory'),('Dragon_HebrideanBlackMount','UsableNonInventory'),('Dragon_HungarianHorntailMount','UsableNonInventory'),('Dragon_TorturedMount','UsableNonInventory'),('RanrakDragonMount','UsableNonInventory');
+INSERT OR IGNORE INTO ItemDefinition (ItemID,ItemType) VALUES ('BladetoothMount','SPECIAL'),('Dragon1Mount','SPECIAL'),('Dragon2Mount','SPECIAL'),('Dragon3Mount','SPECIAL'),('Dragon4Mount','SPECIAL'),('Dragon_GreenWelshMount','SPECIAL'),('Dragon_HebrideanBlackMount','SPECIAL'),('Dragon_HungarianHorntailMount','SPECIAL'),('Dragon_TorturedMount','SPECIAL'),('RanrakDragonMount','SPECIAL');
+
+
+
+
+
+-- INSERT OR IGNORE INTO ItemDefinition (ItemID, ItemType,RarityTier,EconomyValue,SellPrice,Inventoryable,Persistent,Giftable,Sellable,Dropable,SlotLevel,ItemUsagetype,Consumable,TriggerAbilityOnConsume,UsableFromInventory,UIDisplayMethod,UsableOnDiamond,StorageLocation) VALUES
+-- 										('DragonMount','SPECIAL','Default','0','0','1','0','0','0')
+
+
+-- UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=1 WHERE OnlyCapturableWhenNearDeathKneeling is NULL;
+-- UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=NULL WHERE OnlyCapturableWhenNearDeathKneeling=0;
 
 UPDATE NurturingSpaceDefinition SET MaxNumCreatures=99, MaxNumSpecies=99;
