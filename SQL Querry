@@ -1,0 +1,26 @@
+UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=0 WHERE OnlyCapturableWhenNearDeathKneeling is NULL;
+INSERT OR IGNORE INTO CreatureDefinition (CreatureID, ByProduct) SELECT EnemyID AS CreatureID, Drop1 AS ByProduct FROM EnemyDefinition;
+
+INSERT OR IGNORE INTO CreatureDefinition (CreatureID) SELECT RegistryID AS CreatureID FROM Registry WHERE SubtypeID='DarkWizardCharacter' OR SubtypeID='DarkWizardCharacter' OR SubtypeID='DarkWizardDeath' OR SubtypeID='DarkWizardDeprecated' OR SubtypeID='DarkWizardExtortionist' OR SubtypeID='DarkWizardPoacher' OR SubtypeID='DarkWizardWolf' OR SubtypeID='T3DarkWizard' OR SubtypeID='T4DarkWizard' OR SubtypeID='Wolf' OR SubtypeID='Troll' OR SubtypeID='Inferius' OR SubtypeID='InferiusDeprecated' OR SubtypeID='Dugbog' OR SubtypeID='Dragon' OR SubtypeID='PygmyDragonCharacter' OR SubtypeID='GoblinDeprecated' OR SubtypeID='Mannequin' OR SubtypeID='NamedEnemy' OR SubtypeID='SpiderAcromantula' OR SubtypeID='SpiderDeprecated' OR SubtypeID='SpiderVenomous' OR SubtypeID='SpiderWoodlouse' OR SubtypeID='TombProtector' OR SubtypeID='TombProtectorMinion' OR SubtypeID='TrainingDummy' OR SubtypeID='TrollDeprecated' OR SubtypeID='SpiderVenomous' OR SubtypeID='SpiderVenomous' OR SubtypeID='SpiderVenomous';
+
+UPDATE CreatureDefinition SET CanBeCaptured = 1;
+UPDATE CreatureDefinition SET ByProduct = 'Kneazle_Byproduct' WHERE ByProduct IS NULL;
+UPDATE CreatureDefinition SET ByproductHarvestCount = 5.0;
+UPDATE CreatureDefinition SET ByproductProductionTimeSec = 50.0;
+UPDATE CreatureDefinition SET PlayWithToyHappinessPercentage = 0.0 WHERE PlayWithToyHappinessPercentage IS NULL;
+UPDATE CreatureDefinition SET CompletedYearForCapture = 0 WHERE CompletedYearForCapture IS NULL;
+UPDATE CreatureDefinition SET CapturingTime = 1 WHERE CapturingTime IS NULL;
+UPDATE CreatureDefinition SET CapturingGates = 1 WHERE CapturingGates IS NULL;
+UPDATE CreatureDefinition SET CapturingDistanceMax = '200000.0';
+UPDATE CreatureDefinition SET isCarnivore = 0 WHERE isCarnivore IS NULL;
+UPDATE CreatureDefinition SET isAgressive = 0 WHERE isAgressive IS NULL;
+UPDATE CreatureDefinition SET BaseEconomyValue = 10000 WHERE BaseEconomyValue IS NULL;
+UPDATE CreatureDefinition SET MinShutdownDistance = 4000.0 WHERE MinShutdownDistance IS NULL;
+UPDATE CreatureDefinition SET MaxShutdownDistance = 7500.0 WHERE MaxShutdownDistance IS NULL;
+UPDATE CreatureDefinition SET RenderShutdownDistance = 12500.0 WHERE RenderShutdownDistance IS NULL;
+UPDATE CreatureDefinition SET PreferredToy = 'TwigBallToy' WHERE PreferredToy IS NULL;
+
+UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=1 WHERE OnlyCapturableWhenNearDeathKneeling is NULL;
+UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=NULL WHERE OnlyCapturableWhenNearDeathKneeling=0;
+
+UPDATE NurturingSpaceDefinition SET MaxNumCreatures=99, MaxNumSpecies=99;
