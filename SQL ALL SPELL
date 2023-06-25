@@ -1,0 +1,11 @@
+INSERT OR IGNORE INTO LockDefinition (LockID,LockTypeID,LockMsg) SELECT ('Spell_'|| SpellTypeID) AS LockID, 'Simple_Unlocked' AS LockTypeID ,'SpellLockChanged' AS LockMsg FROM SpellKnowledge;
+-- 
+UPDATE LockDefinition SET LockTypeID='Simple_Unlocked' WHERE LockID LIKE '%Spell_%';
+UPDATE LockDefinition SET LockMsg='SpellLockChanged' WHERE LockID LIKE '%Spell_%';
+
+UPDATE SpellKnowledge SET SpellCategory='DarkArts' WHERE SpellKnowledge.SpellCategory IS NULL;
+UPDATE SpellKnowledge SET SpellIdentity='DarkArts' WHERE SpellKnowledge.SpellIdentity IS NULL;
+UPDATE SpellKnowledge SET CurriculumAssociation='DarkArts' WHERE SpellKnowledge.CurriculumAssociation IS NULL;
+UPDATE SpellKnowledge SET AllowInUI=1;
+UPDATE SpellKnowledge SET KnowledgeGain='SpellCast';
+UPDATE SpellKnowledge SET Lock = ('Spell_'|| SpellTypeID) WHERE Lock IS NULL;
