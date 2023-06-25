@@ -24,15 +24,114 @@ UPDATE CreatureDefinition SET PreferredToy = 'TwigBallToy' WHERE PreferredToy IS
 
 
 INSERT OR IGNORE INTO CreatureAttributeFacts (CreatureID, CreatureAttributes) VALUES ('Bladetooth','CreatureAttribute_Flying'),('Dragon1','CreatureAttribute_Flying'),('Dragon2','CreatureAttribute_Flying'),('Dragon3','CreatureAttribute_Flying'),('Dragon4','CreatureAttribute_Flying'),('Dragon_GreenWelsh','CreatureAttribute_Flying'),('Dragon_HebrideanBlack','CreatureAttribute_Flying'),('Dragon_HungarianHorntail','CreatureAttribute_Flying'),('Dragon_Tortured','CreatureAttribute_Flying'),('RanrakDragon','CreatureAttribute_Flying'),('Bladetooth','CreatureAttribute_Aggressive'),('Dragon1','CreatureAttribute_Aggressive'),('Dragon2','CreatureAttribute_Aggressive'),('Dragon3','CreatureAttribute_Aggressive'),('Dragon4','CreatureAttribute_Aggressive'),('Dragon_GreenWelsh','CreatureAttribute_Aggressive'),('Dragon_HebrideanBlack','CreatureAttribute_Aggressive'),('Dragon_HungarianHorntail','CreatureAttribute_Aggressive'),('Dragon_Tortured','CreatureAttribute_Aggressive'),('RanrakDragon','CreatureAttribute_Aggressive'),('Bladetooth','CreatureAttribute_LargeBeasts'),('Dragon1','CreatureAttribute_LargeBeasts'),('Dragon2','CreatureAttribute_LargeBeasts'),('Dragon3','CreatureAttribute_LargeBeasts'),('Dragon4','CreatureAttribute_LargeBeasts'),('Dragon_GreenWelsh','CreatureAttribute_LargeBeasts'),('Dragon_HebrideanBlack','CreatureAttribute_LargeBeasts'),('Dragon_HungarianHorntail','CreatureAttribute_LargeBeasts'),('Dragon_Tortured','CreatureAttribute_LargeBeasts'),('RanrakDragon','CreatureAttribute_LargeBeasts');
-INSERT OR IGNORE INTO Registry (RegistryID, SubtypeID) VALUES ('BladetoothMount','UsableNonInventory'),('Dragon1Mount','UsableNonInventory'),('Dragon2Mount','UsableNonInventory'),('Dragon3Mount','UsableNonInventory'),('Dragon4Mount','UsableNonInventory'),('Dragon_GreenWelshMount','UsableNonInventory'),('Dragon_HebrideanBlackMount','UsableNonInventory'),('Dragon_HungarianHorntailMount','UsableNonInventory'),('Dragon_TorturedMount','UsableNonInventory'),('RanrakDragonMount','UsableNonInventory');
-INSERT OR IGNORE INTO ItemDefinition (ItemID,ItemType) VALUES ('BladetoothMount','SPECIAL'),('Dragon1Mount','SPECIAL'),('Dragon2Mount','SPECIAL'),('Dragon3Mount','SPECIAL'),('Dragon4Mount','SPECIAL'),('Dragon_GreenWelshMount','SPECIAL'),('Dragon_HebrideanBlackMount','SPECIAL'),('Dragon_HungarianHorntailMount','SPECIAL'),('Dragon_TorturedMount','SPECIAL'),('RanrakDragonMount','SPECIAL');
-UPDATE ItemDefinition SET ItemType ='SPECIAL',ItemType2 =NULL,RarityTier ='Default',ItemLevel =NULL,EconomyValue =0,SellPrice =0,Inventoryable =1,Persistent =0.0,Giftable =0.0,Sellable =0.0,Dropable =0.0,SlotLevel ='Single',ItemUsagetype ='PullOut',ItemUsageObjectID =NULL,Consumable =0.0,TriggerAbilityOnConsume =0,LockID =NULL,OnUseLockID =NULL,PrerequisiteLockID =NULL,PrerequisiteLockID2 =NULL,UsableFromInventory =0.0,UIDisplayMethod ='FullScreen',UsableOnDiamond =1,StorageLocation ='FlyingMountStorage';
+
+INSERT OR IGNORE INTO NamedCreatureDefinition (NamedCreatureID, CreatureUID,TypeID) VALUES ('Bladetooth',148,'Bladetooth'),('Dragon1',149,'Dragon1'),('Dragon2',150,'Dragon2'),('Dragon3',151,'Dragon3'),('Dragon4',152,'Dragon4'),('Dragon_GreenWelsh',153,'Dragon_GreenWelsh'),('Dragon_HebrideanBlack',154,'Dragon_HebrideanBlack'),('Dragon_HungarianHorntail',155,'Dragon_HungarianHorntail'),('Dragon_Tortured',156,'Dragon_Tortured'),('RanrakDragon',157,'RanrakDragon');
+UPDATE NamedCreatureDefinition SET CreatureName=NamedCreatureID, IsLocalizedName=1, IsUncapturable=0, IsGenderMale=1, IsMount=1, CanRename=0, CanReturnToWild=0, ColorVariation='DEFAULT', ScaleVariation=1 WHERE NamedCreatureID='Bladetooth' OR NamedCreatureID='Dragon1' OR NamedCreatureID='Dragon2' OR NamedCreatureID='Dragon3' OR NamedCreatureID='Dragon4' OR NamedCreatureID='Dragon_GreenWelsh' OR NamedCreatureID='Dragon_HebrideanBlack' OR NamedCreatureID='Dragon_HungarianHorntail' OR NamedCreatureID='Dragon_Tortured' OR NamedCreatureID='RanrakDragon';
+
+DELETE FROM AmbientCreatureDefinition
+WHERE CreatureID='Dragon_HungarianHorntail' OR CreatureID='Dragon_HebrideanBlack' OR CreatureID='Dragon_GreenWelsh' OR CreatureID='Dragon1' OR CreatureID='Dragon2' OR CreatureID='Dragon3' OR CreatureID='Dragon4';
+
+DELETE FROM AmbientCreatureGroupDefinition
+WHERE CreatureID='Dragon_HungarianHorntail' OR CreatureID='Dragon_HebrideanBlack' OR CreatureID='Dragon_GreenWelsh' OR CreatureID='Dragon1' OR CreatureID='Dragon2' OR CreatureID='Dragon3' OR CreatureID='Dragon4';
+
+DELETE FROM CreatureDefinition
+WHERE CreatureID='Dragon_HungarianHorntail' OR CreatureID='Dragon_HebrideanBlack' OR CreatureID='Dragon_GreenWelsh' OR CreatureID='Dragon1' OR CreatureID='Dragon2' OR CreatureID='Dragon3' OR CreatureID='Dragon4';
+
+INSERT OR IGNORE INTO AmbientCreatureDefinition (CreatureID,MinSpawnRange,MaxSpawnRange,CullRange,MinClusterSize,MaxClusterSize,ClusterRadius) VALUES ('Dragon_HungarianHorntail',10000.0,12000.0,150000.0,1,2,500.0),
+('Dragon_HebrideanBlack',10000.0,12000.0,150000.0,1,2,500.0),
+('Dragon_GreenWelsh',10000.0,12000.0,150000.0,1,2,500.0),
+('Dragon1',10000.0,12000.0,150000.0,1,2,500.0),
+('Dragon2',10000.0,12000.0,150000.0,1,2,500.0),
+('Dragon3',10000.0,12000.0,150000.0,1,2,500.0),
+('Dragon4',10000.0,12000.0,150000.0,1,2,500.0);
+
+INSERT OR IGNORE INTO AmbientCreatureGroupDefinition(GroupID,CreatureID,Frequency,ClusterProbability) VALUES ('ACG_Coastal','Dragon1','5 - Common',1.0),
+('ACG_Coastal','Dragon2','5 - Common',1.0),
+('ACG_Coastal','Dragon3','5 - Common',1.0),
+('ACG_Coastal','Dragon4','5 - Common',1.0),
+('ACG_Coastal','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_Coastal','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_Coastal','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_CoastalGrasslands','Dragon1','5 - Common',1.0),
+('ACG_CoastalGrasslands','Dragon2','5 - Common',1.0),
+('ACG_CoastalGrasslands','Dragon3','5 - Common',1.0),
+('ACG_CoastalGrasslands','Dragon4','5 - Common',1.0),
+('ACG_CoastalGrasslands','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_CoastalGrasslands','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_CoastalGrasslands','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_Forest','Dragon1','5 - Common',1.0),
+('ACG_Forest','Dragon2','5 - Common',1.0),
+('ACG_Forest','Dragon3','5 - Common',1.0),
+('ACG_Forest','Dragon4','5 - Common',1.0),
+('ACG_Forest','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_Forest','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_Forest','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_ForestDark','Dragon1','5 - Common',1.0),
+('ACG_ForestDark','Dragon2','5 - Common',1.0),
+('ACG_ForestDark','Dragon3','5 - Common',1.0),
+('ACG_ForestDark','Dragon4','5 - Common',1.0),
+('ACG_ForestDark','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_ForestDark','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_ForestDark','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_ForestDense','Dragon1','5 - Common',1.0),
+('ACG_ForestDense','Dragon2','5 - Common',1.0),
+('ACG_ForestDense','Dragon3','5 - Common',1.0),
+('ACG_ForestDense','Dragon4','5 - Common',1.0),
+('ACG_ForestDense','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_ForestDense','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_ForestDense','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_ForestLight','Dragon1','5 - Common',1.0),
+('ACG_ForestLight','Dragon2','5 - Common',1.0),
+('ACG_ForestLight','Dragon3','5 - Common',1.0),
+('ACG_ForestLight','Dragon4','5 - Common',1.0),
+('ACG_ForestLight','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_ForestLight','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_ForestLight','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_Grasslands','Dragon1','5 - Common',1.0),
+('ACG_Grasslands','Dragon2','5 - Common',1.0),
+('ACG_Grasslands','Dragon3','5 - Common',1.0),
+('ACG_Grasslands','Dragon4','5 - Common',1.0),
+('ACG_Grasslands','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_Grasslands','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_Grasslands','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_Highland','Dragon1','5 - Common',1.0),
+('ACG_Highland','Dragon2','5 - Common',1.0),
+('ACG_Highland','Dragon3','5 - Common',1.0),
+('ACG_Highland','Dragon4','5 - Common',1.0),
+('ACG_Highland','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_Highland','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_Highland','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_Mountains','Dragon1','5 - Common',1.0),
+('ACG_Mountains','Dragon2','5 - Common',1.0),
+('ACG_Mountains','Dragon3','5 - Common',1.0),
+('ACG_Mountains','Dragon4','5 - Common',1.0),
+('ACG_Mountains','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_Mountains','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_Mountains','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_TownSurroundings','Dragon1','5 - Common',1.0),
+('ACG_TownSurroundings','Dragon2','5 - Common',1.0),
+('ACG_TownSurroundings','Dragon3','5 - Common',1.0),
+('ACG_TownSurroundings','Dragon4','5 - Common',1.0),
+('ACG_TownSurroundings','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_TownSurroundings','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_TownSurroundings','Dragon_HungarianHorntail','5 - Common',1.0),
+('ACG_Wetlands','Dragon1','5 - Common',1.0),
+('ACG_Wetlands','Dragon2','5 - Common',1.0),
+('ACG_Wetlands','Dragon3','5 - Common',1.0),
+('ACG_Wetlands','Dragon4','5 - Common',1.0),
+('ACG_Wetlands','Dragon_GreenWelsh','5 - Common',1.0),
+('ACG_Wetlands','Dragon_HebrideanBlack','5 - Common',1.0),
+('ACG_Wetlands','Dragon_HungarianHorntail','5 - Common',1.0);
+
+INSERT OR IGNORE INTO CreatureDefinition(CreatureID,ByProduct,ByproductHarvestCount,ByproductProductionTimeSec,PreferredToy,PlayWithToyHappinessPercentage,Conflict1,Conflict2,CanBeCaptured,AchievementForCapturing,CompletedYearForCapture,CapturingTime,CapturingGates,CapturingDistanceMax,OnlyCapturableWhenNearDeathKneeling,isCarnivore,isAgressive,BaseEconomyValue,SpawnFlyingProbability,MinShutdownDistance,MaxShutdownDistance,RenderShutdownDistance) VALUES ('Dragon1','Graphorn_Byproduct',5,700.0,'WeebleToy',0.0,NULL,NULL,1,NULL,1,1.0,1,3000,NULL,0,0,2500,NULL,4000.0,7500.0,15000.0),
+('Dragon2','Graphorn_Byproduct',5,700.0,'WeebleToy',0.0,NULL,NULL,1,NULL,1,1.0,1,3000,NULL,0,0,2500,NULL,4000.0,7500.0,15000.0),
+('Dragon3','Graphorn_Byproduct',5,700.0,'WeebleToy',0.0,NULL,NULL,1,NULL,1,1.0,1,3000,NULL,0,0,2500,NULL,4000.0,7500.0,15000.0),
+('Dragon4','Graphorn_Byproduct',5,700.0,'WeebleToy',0.0,NULL,NULL,1,NULL,1,1.0,1,3000,NULL,0,0,2500,NULL,4000.0,7500.0,15000.0),
+('Dragon_GreenWelsh','Graphorn_Byproduct',5,700.0,'WeebleToy',0.0,NULL,NULL,1,NULL,1,1.0,1,3000,NULL,0,0,2500,NULL,4000.0,7500.0,15000.0),
+('Dragon_HebrideanBlack','Graphorn_Byproduct',5,700.0,'WeebleToy',0.0,NULL,NULL,1,NULL,1,1.0,1,3000,NULL,0,0,2500,NULL,4000.0,7500.0,15000.0),
+('Dragon_HungarianHorntail','Graphorn_Byproduct',5,700.0,'WeebleToy',0.0,NULL,NULL,1,NULL,1,1.0,1,3000,NULL,0,0,2500,NULL,4000.0,7500.0,15000.0);
 
 
-
-
--- INSERT OR IGNORE INTO ItemDefinition (ItemID, ItemType,RarityTier,EconomyValue,SellPrice,Inventoryable,Persistent,Giftable,Sellable,Dropable,SlotLevel,ItemUsagetype,Consumable,TriggerAbilityOnConsume,UsableFromInventory,UIDisplayMethod,UsableOnDiamond,StorageLocation) VALUES
--- 										('DragonMount','SPECIAL','Default','0','0','1','0','0','0')
 
 
 -- UPDATE CreatureDefinition SET OnlyCapturableWhenNearDeathKneeling=1 WHERE OnlyCapturableWhenNearDeathKneeling is NULL;
